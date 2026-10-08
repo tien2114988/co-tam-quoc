@@ -14,6 +14,10 @@ tranh thiên hạ, lấy hình học từ bàn cờ lịch sử *“Game of the 
 
 > 🔗 **https://tien2114988.github.io/co-tam-quoc/**
 
+Chạy tốt trên **điện thoại** (iPhone/Android, dọc & ngang): bàn cờ tự co theo
+màn hình, ô chạm to cho ngón tay, panel phòng cuộn được, chụm 2 ngón để phóng
+to bàn cờ nếu muốn chính xác hơn.
+
 **Chơi offline (không cần cài gì):**
 
 ```bash

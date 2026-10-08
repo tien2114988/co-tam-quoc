@@ -261,14 +261,22 @@
     const dot = document.querySelector('.tb-dot');
     dot.style.background = F.color; dot.style.color = F.color;
     let txt;
-    if (!APP.started) txt = APP.mode === 'online' ? 'Chờ chủ phòng bắt đầu…' : 'Chưa bắt đầu';
+    if (!APP.started) txt = APP.mode === 'online'
+      ? (APP.host ? 'Bạn là chủ phòng — bấm Bắt đầu' : 'Chờ chủ phòng bắt đầu…')
+      : 'Chưa bắt đầu';
     else if (APP.game.st.gameOver) txt = 'Trận kết thúc';
     else if (isAI(turn)) txt = `${F.name} (máy) đang suy nghĩ…`;
     else txt = `Đến lượt ${F.name}` + (isMySeat(turn) && APP.mode === 'online' ? ' — bạn' : '');
     $('turn-text').textContent = txt;
     // gợi ý
     const hint = $('board-hint');
-    if (!APP.started) hint.textContent = APP.mode === 'online' ? 'Nhắn chat ở panel bên phải · chủ phòng bấm Bắt đầu' : '';
+    if (!APP.started) {
+      const under = matchMedia('(orientation:portrait) and (max-width:960px)').matches;
+      hint.textContent = APP.mode === 'online'
+        ? (under ? 'Chat ở panel phía dưới · chủ phòng bấm Bắt đầu'
+                 : 'Nhắn chat ở panel bên phải · chủ phòng bấm Bắt đầu')
+        : '';
+    }
     else if (APP.game.st.gameOver) hint.textContent = '';
     else if (isAI(turn)) hint.textContent = 'Máy đang tính toán nước đi…';
     else if (APP.sel != null) hint.textContent = 'Chọn ô sáng để đi · ô viền đỏ là ô ăn quân';
