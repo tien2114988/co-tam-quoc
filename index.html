@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cờ Tam Quốc — Trò chơi ba phe</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%23cf3a3a'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='white' font-family='serif'>蜀</text></svg>">
+</head>
+<body>
+
+<!-- ======================= MÀN HÌNH CHÍNH ======================= -->
+<div id="screen-menu" class="screen active">
+  <div class="menu-bg"></div>
+  <div class="menu-inner">
+    <div class="title-block">
+      <div class="title-seal">漢</div>
+      <h1 class="game-title">CỜ TAM QUỐC</h1>
+      <div class="game-sub">Tam quốc phân tranh · Trò chơi của ba phe</div>
+      <div class="title-factions">
+        <span class="tf tf-shu">蜀 Thục</span>
+        <span class="tf tf-wu">吳 Ngô</span>
+        <span class="tf tf-wei">魏 Ngụy</span>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-label">CHẾ ĐỘ CHƠI</div>
+      <div class="mode-grid">
+        <button class="mode-btn" data-mode="ai">
+          <span class="mode-icon">⚔</span>
+          <span class="mode-name">1 người vs 2 máy</span>
+          <span class="mode-desc">Bạn (Thục) chinh phục Ngô &amp; Ngụy</span>
+        </button>
+        <button class="mode-btn" data-mode="mix">
+          <span class="mode-icon">☗</span>
+          <span class="mode-name">2 người + 1 máy</span>
+          <span class="mode-desc">Thục &amp; Ngô là người, Ngụy do máy</span>
+        </button>
+        <button class="mode-btn" data-mode="pass">
+          <span class="mode-icon">👬</span>
+          <span class="mode-name">3 người chơi chung</span>
+          <span class="mode-desc">Luân phiên nhau trên một thiết bị</span>
+        </button>
+        <button class="mode-btn" data-mode="online">
+          <span class="mode-icon">🌐</span>
+          <span class="mode-name">Chơi online 3 người</span>
+          <span class="mode-desc">Tạo phòng hoặc vào phòng bằng mã</span>
+        </button>
+      </div>
+
+      <div class="menu-label">ĐỘ KHÓ CỦA MÁY</div>
+      <div class="diff-row">
+        <button class="diff-btn" data-level="easy">Dễ</button>
+        <button class="diff-btn selected" data-level="medium">Vừa</button>
+        <button class="diff-btn" data-level="hard">Khó</button>
+      </div>
+
+      <label class="opt-row">
+        <input type="checkbox" id="opt-sound" checked>
+        <span>🔊 Âm thanh</span>
+      </label>
+      <label class="opt-row">
+        <input type="checkbox" id="opt-neutral">
+        <span>⚖️ Luật trung lập <small>(phe thứ ba không thể ngăn chiếu)</small></span>
+      </label>
+
+      <button id="btn-play" class="play-btn">⚔ BẮT ĐẦU TRẬN</button>
+
+      <div id="online-box" class="online-box hidden">
+        <div class="online-row">
+          <input id="inp-name" type="text" placeholder="Tên của bạn" maxlength="16" value="Người chơi">
+          <button id="btn-create" class="net-btn primary">Tạo phòng</button>
+        </div>
+        <div class="online-row">
+          <input id="inp-code" type="text" placeholder="MÃ PHÒNG (4 ký tự)" maxlength="4">
+          <button id="btn-join" class="net-btn">Vào phòng</button>
+        </div>
+        <div id="net-msg" class="net-msg"></div>
+      </div>
+
+      <div class="menu-foot">Viết cho Phạm Hoàng Gia Bảo</div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================= MÀN HÌNH CHƠI ======================= -->
+<div id="screen-game" class="screen">
+  <header class="topbar">
+    <div class="top-title">⚔ CỜ TAM QUỐC</div>
+    <div class="top-actions">
+      <button id="btn-undo" class="top-btn" title="Hoàn nước">↩ Hoàn</button>
+      <button id="btn-sound" class="top-btn" title="Bật/tắt âm thanh">🔊</button>
+      <button id="btn-restart" class="top-btn" title="Ván mới">⟳</button>
+      <button id="btn-menu" class="top-btn" title="Về menu">☰</button>
+    </div>
+  </header>
+
+  <main class="game-main">
+    <section class="board-wrap">
+      <div id="turn-banner" class="turn-banner">
+        <span class="tb-dot"></span><span id="turn-text">Đến lượt Thục</span>
+      </div>
+      <svg id="board" viewBox="0 0 860 750" preserveAspectRatio="xMidYMid meet"></svg>
+      <div id="board-hint" class="board-hint"></div>
+    </section>
+
+    <aside class="side-panel">
+      <div id="faction-cards" class="faction-cards"></div>
+
+      <div class="log-head">NHẬT KÝ TRẬN</div>
+      <div id="log" class="log"></div>
+
+      <div id="room-panel" class="room-panel hidden">
+        <div class="room-code">MÃ PHÒNG: <b id="room-code-txt">----</b></div>
+        <div id="room-seats" class="room-seats"></div>
+        <div class="room-actions">
+          <button id="btn-start" class="net-btn primary">▶ Bắt đầu</button>
+          <button id="btn-chat-send" class="net-btn">Gửi</button>
+        </div>
+        <input id="inp-chat" type="text" placeholder="Nhắn câu…" maxlength="60">
+        <div id="chat-log" class="chat-log"></div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- lớp phủ: chiếu / loại phe / chiến thắng / máy đang nghĩ -->
+  <div id="fx-banner" class="fx-banner hidden"></div>
+  <div id="fx-overlay" class="fx-overlay hidden"><div id="fx-overlay-inner"></div></div>
+  <div id="thinking" class="thinking hidden"><span></span><span></span><span></span> <em id="think-text">đang suy nghĩ</em></div>
+</div>
+
+<script src="js/board.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/vendor/mqtt.min.js"></script>
+<script src="js/net.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg7134" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="750" width="860" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 860.00001 750.00001">
+ <metadata id="metadata7139">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer6" transform="translate(-20 -232.36)" stroke="#000">
+  <path id="path7917" d="m250 952.36 400-0.00005 200-346.41-200-346.41h-400l-200 346.41z" fill-rule="evenodd" stroke-width="2" fill="#eda"/>
+  <g fill="none">
+   <path id="path7919" d="m427.78 259.54-17.97 323.21-270.92 177.16" stroke-width="2"/>
+   <g stroke-width="1px">
+    <path id="path7921" d="m383.33 259.54-38.47 285.71-228.19 176.17"/>
+    <path id="path7923" d="m338.89 259.54-58.99 248.21-185.46 175.18"/>
+    <path id="path7925" d="m294.44 259.54-79.49 210.71-142.73 174.19"/>
+    <path id="path7927" d="m605.56 259.54 79.493 210.71 142.73 174.2"/>
+    <path id="path7929" d="m561.11 259.54 58.99 248.21 185.46 175.18"/>
+    <path id="path7931" d="m516.67 259.54 38.478 285.71 228.19 176.18"/>
+   </g>
+   <path id="path7933" d="m472.22 259.54 17.97 323.21 270.92 177.17" stroke-width="2"/>
+   <path id="path7935" d="m161.11 798.4 288.89-146.04 288.89 146.04" stroke-width="2"/>
+   <g stroke-width="1px">
+    <path id="path7937" d="m183.33 836.89 266.67-109.53 266.67 109.53"/>
+    <path id="path7939" d="m205.56 875.38 244.44-73.02l244.44 73.02"/>
+    <path id="path7941" d="m227.78 913.87 222.22-36.51 222.22 36.51"/>
+    <path id="path7943" d="m229.39 763.89 70.61 188.47"/>
+    <path id="path7945" d="m297.32 729.54 52.68 222.82"/>
+    <path id="path7947" d="m365.01 695.32 34.99 257.04"/>
+    <path id="path7949" d="m534.99 695.32-34.99 257.04"/>
+    <path id="path7951" d="m602.68 729.54-52.68 222.82"/>
+    <path id="path7953" d="m670.61 763.89-70.61 188.47"/>
+    <path id="path7955" d="m697.08 718.04 127.92-155.39"/>
+    <path id="path7957" d="m633.37 676.38 166.63-157.03"/>
+    <path id="path7959" d="m569.89 634.87 205.11-158.82"/>
+    <path id="path7961" d="m450 652.36v300"/>
+    <path id="path7963" d="m490.19 582.75 259.81-150"/>
+    <path id="path7965" d="m484.91 487.67 240.09-98.22"/>
+    <path id="path7967" d="m480.7 411.94 219.3-65.8"/>
+    <path id="path7969" d="m476.47 335.93 198.53-33.088"/>
+    <path id="path7971" d="m423.53 335.93-198.53-33.09"/>
+    <path id="path7973" d="m419.3 411.94-219.3-65.8"/>
+    <path id="path7975" d="m415.09 487.67-240.09-98.22"/>
+    <path id="path7977" d="m409.81 582.75-259.81-150"/>
+    <path id="path7979" d="m330.11 634.87-205.11-158.82"/>
+    <path id="path7981" d="m266.63 676.38-166.63-157.03"/>
+    <path id="path7983" d="m202.92 718.04-127.92-155.39"/>
+   </g>
+   <path id="path7985" d="m409.81 582.75 40.19 69.61 40.19-69.61z" stroke-width="2"/>
+   <g stroke-width="1px">
+    <path id="path7987" d="m382.33 822.58 67.67 54.78l50 75"/>
+    <path id="path7989" d="m517.67 822.58-67.67 54.78-50 75"/>
+    <path id="path7991" d="m671.43 556.24 13.614-85.994 39.952-80.801"/>
+    <path id="path7993" d="m603.77 439.04 81.28 31.207 89.952 5.8012"/>
+    <path id="path7995" d="m295.05 438.56-80.095 31.691-89.952 5.8013"/>
+    <path id="path7997" d="m227.55 555.46-12.6-85.21-39.95-80.8"/>
+   </g>
+  </g>
+ </g>
+ <g id="layer8" transform="translate(-20 -232.36)" stroke-linecap="round">
+  <g stroke="#600000">
+   <circle id="path8007" cx="450" cy="952.36" r="22.75" stroke-width="1.5" fill="#fcc"/>
+   <circle id="circle8013" cx="450" cy="952.36" r="19.5" fill="#fff"/>
+   <circle id="circle8015" stroke-width="1.5" cy="952.36" cx="500" r="22.75" fill="#fcc"/>
+   <circle id="circle8017" cy="952.36" cx="500" r="19.5" fill="#fff"/>
+   <circle id="circle8019" cx="550" cy="952.36" r="22.75" stroke-width="1.5" fill="#fcc"/>
+   <circle id="circle8021" cx="550" cy="952.36" r="19.5" fill="#fff"/>
+   <circle id="circle8023" stroke-width="1.5" cy="952.36" cx="600" r="22.75" fill="#fcc"/>
+   <circle id="circle8025" cy="952.36" cx="600" r="19.5" fill="#fff"/>
+   <circle id="circle8027" cx="650" cy="952.36" r="22.75" stroke-width="1.5" fill="#fcc"/>
+   <circle id="circle8029" cx="650" cy="952.36" r="19.5" fill="#fff"/>
+   <circle id="circle8031" cx="250" cy="952.36" r="22.75" stroke-width="1.5" fill="#fcc"/>
+   <circle id="circle8033" cx="250" cy="952.36" r="19.5" fill="#fff"/>
+   <circle id="circle8035" stroke-width="1.5" cy="952.36" cx="300" r="22.75" fill="#fcc"/>
+   <circle id="circle8037" cy="952.36" cx="300" r="19.5" fill="#fff"/>
+   <circle id="circle8039" cx="350" cy="952.36" r="22.75" stroke-width="1.5" fill="#fcc"/>
+   <circle id="circle8041" cx="350" cy="952.36" r="19.5" fill="#fff"/>
+   <circle id="circle8043" stroke-width="1.5" cy="952.36" cx="400" r="22.75" fill="#fcc"/>
+   <circle id="circle8045" cy="952.36" cx="400" r="19.5" fill="#fff"/>
+   <circle id="circle8047" stroke-width="1.5" cy="857.76" cx="264.56" r="22.75" fill="#fcc"/>
+   <circle id="circle8049" cy="857.76" cx="264.56" r="19.5" fill="#fff"/>
+   <circle id="circle8051" cx="382.33" cy="822.58" r="22.75" stroke-width="1.5" fill="#fcc"/>
+   <circle id="circle8053" cx="382.33" cy="822.58" r="19.5" fill="#fff"/>
+   <circle id="circle8055" stroke-width="1.5" cy="822.58" cx="517.67" r="22.75" fill="#fcc"/>
+   <circle id="circle8057" cy="822.58" cx="517.67" r="19.5" fill="#fff"/>
+   <circle id="circle8059" cx="635.44" cy="857.76" r="22.75" stroke-width="1.5" fill="#fcc"/>
+   <circle id="circle8061" cx="635.44" cy="857.76" r="19.5" fill="#fff"/>
+   <circle id="circle8067" stroke-width="1.5" cy="836.89" cx="716.67" r="22.75" fill="#fcc"/>
+   <circle id="circle8069" cy="836.89" cx="716.67" r="19.5" fill="#fff"/>
+   <circle id="circle8071" cx="589.63" cy="784.71" r="22.75" stroke-width="1.5" fill="#fcc"/>
+   <circle id="circle8073" cx="589.63" cy="784.71" r="19.5" fill="#fff"/>
+   <circle id="circle8075" stroke-width="1.5" cy="727.36" cx="450" r="22.75" fill="#fcc"/>
+   <circle id="circle8077" cy="727.36" cx="450" r="19.5" fill="#fff"/>
+   <circle id="circle8079" cx="310.37" cy="784.71" r="22.75" stroke-width="1.5" fill="#fcc"/>
+   <circle id="circle8081" cx="310.37" cy="784.71" r="19.5" fill="#fff"/>
+   <circle id="circle8083" stroke-width="1.5" cy="836.89" cx="183.33" r="22.75" fill="#fcc"/>
+   <circle id="circle8085" cy="836.89" cx="183.33" r="19.5" fill="#fff"/>
+  </g>
+  <g stroke="#006000">
+   <circle id="circle8087" cx="850" cy="605.95" r="22.75" stroke-width="1.5" fill="#cfc"/>
+   <circle id="circle8089" cx="850" cy="605.95" r="19.5" fill="#fff"/>
+   <circle id="circle8091" stroke-width="1.5" cy="562.65" cx="825" r="22.75" fill="#cfc"/>
+   <circle id="circle8093" cy="562.65" cx="825" r="19.5" fill="#fff"/>
+   <circle id="circle8095" cx="800" cy="519.35" r="22.75" stroke-width="1.5" fill="#cfc"/>
+   <circle id="circle8097" cx="800" cy="519.35" r="19.5" fill="#fff"/>
+   <circle id="circle8099" stroke-width="1.5" cy="476.05" cx="775" r="22.75" fill="#cfc"/>
+   <circle id="circle8101" cy="476.05" cx="775" r="19.5" fill="#fff"/>
+   <circle id="circle8103" cx="750" cy="432.75" r="22.75" stroke-width="1.5" fill="#cfc"/>
+   <circle id="circle8105" cx="750" cy="432.75" r="19.5" fill="#fff"/>
+   <circle id="circle8107" stroke-width="1.5" cy="389.45" cx="725" r="22.75" fill="#cfc"/>
+   <circle id="circle8109" cy="389.45" cx="725" r="19.5" fill="#fff"/>
+   <circle id="circle8111" cx="700" cy="346.14" r="22.75" stroke-width="1.5" fill="#cfc"/>
+   <circle id="circle8113" cx="700" cy="346.14" r="19.5" fill="#fff"/>
+   <circle id="circle8115" stroke-width="1.5" cy="302.84" cx="675" r="22.75" fill="#cfc"/>
+   <circle id="circle8117" cy="302.84" cx="675" r="19.5" fill="#fff"/>
+   <circle id="circle8119" cx="650" cy="259.54" r="22.75" stroke-width="1.5" fill="#cfc"/>
+   <circle id="circle8121" cx="650" cy="259.54" r="19.5" fill="#fff"/>
+   <circle id="circle8123" stroke-width="1.5" cy="319.39" cx="575.73" r="22.75" fill="#cfc"/>
+   <circle id="circle8125" cy="319.39" cx="575.73" r="19.5" fill="#fff"/>
+   <circle id="circle8127" cx="603.77" cy="439.04" r="22.75" stroke-width="1.5" fill="#cfc"/>
+   <circle id="circle8129" cx="603.77" cy="439.04" r="19.5" fill="#fff"/>
+   <circle id="circle8131" stroke-width="1.5" cy="556.24" cx="671.43" r="22.75" fill="#cfc"/>
+   <circle id="circle8133" cy="556.24" cx="671.43" r="19.5" fill="#fff"/>
+   <circle id="circle8139" cx="760.79" cy="640.65" r="22.75" stroke-width="1.5" fill="#cfc"/>
+   <circle id="circle8141" cx="760.79" cy="640.65" r="19.5" fill="#fff"/>
+   <circle id="circle8143" stroke-width="1.5" cy="721.42" cx="783.33" r="22.75" fill="#cfc"/>
+   <circle id="circle8145" cy="721.42" cx="783.33" r="19.5" fill="#fff"/>
+   <circle id="circle8147" cx="674.63" cy="637.5" r="22.75" stroke-width="1.5" fill="#cfc"/>
+   <circle id="circle8149" cx="674.63" cy="637.5" r="19.5" fill="#fff"/>
+   <circle id="circle8155" stroke-width="1.5" cy="545.25" cx="555.14" r="22.75" fill="#cfc"/>
+   <circle id="circle8157" cy="545.25" cx="555.14" r="19.5" fill="#fff"/>
+   <circle id="circle8163" cx="535" cy="395.65" r="22.75" stroke-width="1.5" fill="#cfc"/>
+   <circle id="circle8165" cx="535" cy="395.65" r="19.5" fill="#fff"/>
+   <circle id="circle8167" stroke-width="1.5" cy="259.54" cx="516.67" r="22.75" fill="#cfc"/>
+   <circle id="circle8169" cy="259.54" cx="516.67" r="19.5" fill="#fff"/>
+  </g>
+  <g stroke="#000060">
+   <circle id="circle8171" cx="250" cy="259.54" r="22.75" stroke-width="1.5" fill="#ccf"/>
+   <circle id="circle8173" cx="250" cy="259.54" r="19.5" fill="#fff"/>
+   <circle id="circle8175" stroke-width="1.5" cy="302.84" cx="225" r="22.75" fill="#ccf"/>
+   <circle id="circle8177" cy="302.84" cx="225" r="19.5" fill="#fff"/>
+   <circle id="circle8179" cx="200" cy="346.14" r="22.75" stroke-width="1.5" fill="#ccf"/>
+   <circle id="circle8181" cx="200" cy="346.14" r="19.5" fill="#fff"/>
+   <circle id="circle8187" stroke-width="1.5" cy="389.45" cx="175" r="22.75" fill="#ccf"/>
+   <circle id="circle8189" cy="389.45" cx="175" r="19.5" fill="#fff"/>
+   <circle id="circle8191" cx="150" cy="432.75" r="22.75" stroke-width="1.5" fill="#ccf"/>
+   <circle id="circle8193" cx="150" cy="432.75" r="19.5" fill="#fff"/>
+   <circle id="circle8195" stroke-width="1.5" cy="476.05" cx="125" r="22.75" fill="#ccf"/>
+   <circle id="circle8197" cy="476.05" cx="125" r="19.5" fill="#fff"/>
+   <circle id="circle8199" cx="100" cy="519.35" r="22.75" stroke-width="1.5" fill="#ccf"/>
+   <circle id="circle8201" cx="100" cy="519.35" r="19.5" fill="#fff"/>
+   <circle id="circle8203" stroke-width="1.5" cy="562.65" cx="75" r="22.75" fill="#ccf"/>
+   <circle id="circle8205" cy="562.65" cx="75" r="19.5" fill="#fff"/>
+   <circle id="circle8207" cx="50" cy="605.95" r="22.75" stroke-width="1.5" fill="#ccf"/>
+   <circle id="circle8209" cx="50" cy="605.95" r="19.5" fill="#fff"/>
+   <circle id="circle8211" stroke-width="1.5" cy="319.45" cx="324.65" r="22.75" fill="#ccf"/>
+   <circle id="circle8213" cy="319.45" cx="324.65" r="19.5" fill="#fff"/>
+   <circle id="circle8215" cx="383.33" cy="259.54" r="22.75" stroke-width="1.5" fill="#ccf"/>
+   <circle id="circle8217" cx="383.33" cy="259.54" r="19.5" fill="#fff"/>
+   <circle id="circle8219" stroke-width="1.5" cy="438.56" cx="295.05" r="22.75" fill="#ccf"/>
+   <circle id="circle8221" cy="438.56" cx="295.05" r="19.5" fill="#fff"/>
+   <circle id="circle8223" cx="228.57" cy="556.24" r="22.75" stroke-width="1.5" fill="#ccf"/>
+   <circle id="circle8225" cx="228.57" cy="556.24" r="19.5" fill="#fff"/>
+   <circle id="circle8227" stroke-width="1.5" cy="640.65" cx="139.21" r="22.75" fill="#ccf"/>
+   <circle id="circle8229" cy="640.65" cx="139.21" r="19.5" fill="#fff"/>
+   <circle id="circle8231" cx="116.67" cy="721.42" r="22.75" stroke-width="1.5" fill="#ccf"/>
+   <circle id="circle8233" cx="116.67" cy="721.42" r="19.5" fill="#fff"/>
+   <circle id="circle8239" stroke-width="1.5" cy="637.5" cx="225.37" r="22.75" fill="#ccf"/>
+   <circle id="circle8241" cy="637.5" cx="225.37" r="19.5" fill="#fff"/>
+   <circle id="circle8243" cx="344.86" cy="545.25" r="22.75" stroke-width="1.5" fill="#ccf"/>
+   <circle id="circle8245" cx="344.86" cy="545.25" r="19.5" fill="#fff"/>
+   <circle id="circle8247" stroke-width="1.5" cy="395.65" cx="365" r="22.75" fill="#ccf"/>
+   <circle id="circle8249" cy="395.65" cx="365" r="19.5" fill="#fff"/>
+  </g>
+ </g>
+ <g id="layer10" font-size="30px" font-family="AR PL UKai TW" style="word-spacing:0px;letter-spacing:1px;text-anchor:middle;text-align:center" xml:space="preserve" line-height="89.99999762%">
+  <g fill="#800">
+   <text id="text6764" y="730.5" x="429.5">蜀</text>
+   <text id="text8393" y="730.5" x="379.5">仕</text>
+   <text id="text8401" y="730.5" x="479.5">仕</text>
+   <text id="text8405" y="730.5" x="329.5">相</text>
+   <text id="text8409" y="730.5" x="529.5">相</text>
+   <text id="text8413" y="730.5" x="279.5">傌</text>
+   <text id="text8417" y="730.5" x="579.5">傌</text>
+   <text id="text8421" y="730.5" x="629.5">俥</text>
+   <text id="text8425" y="730.5" x="229.5">俥</text>
+   <text id="text8429" y="635.89496" x="244.05765">炮</text>
+   <text id="text8433" y="635.8949" x="614.94232">炮</text>
+   <text id="text8437" y="600.71289" x="497.16553">火</text>
+   <text id="text8441" y="600.71289" x="361.83441" >火</text>
+   <text id="text8445" y="615.02991" x="162.83328">兵</text>
+   <text id="text8449" y="562.85229" x="289.86737">兵</text>
+   <text id="text8453" y="505.5" x="429.5">兵</text>
+   <text id="text8457" y="562.85229" x="569.13257" >兵</text>
+   <text id="text8461" y="615.02991" x="696.16663">兵</text>
+  </g>
+  <g fill="#080">
+   <text id="text8385" y="210.88467" x="729.5">吳</text>
+   <text id="text8465" y="167.5834" x="704.5">士</text>
+   <text id="text8469" y="254.18594" x="754.5" >士</text>
+   <text id="text8473" y="124.28214" x="679.5">向</text>
+   <text id="text8477" y="297.48724" x="779.5">向</text>
+   <text id="text8481" y="340.78851" x="804.5">馬</text>
+   <text id="text8485" y="80.980873" x="654.5">馬</text>
+   <text id="text8489" y="37.6796" x="629.5">車</text>
+   <text id="text8493" y="384.08978" x="829.5" >車</text>
+   <text id="text8497" y="418.78497" x="740.29077">礮</text>
+   <text id="text8501" y="97.525063" x="555.23474">礮</text>
+   <text id="text8505" y="217.17819" x="583.26831">風</text>
+   <text id="text8509" y="334.3783" x="650.93384">風</text>
+   <text id="text8513" y="499.55981" x="762.83331">勇</text>
+   <text id="text8517" y="415.63391" x="654.12915">勇</text>
+   <text id="text8521" y="323.3847" x="534.64435">勇</text>
+   <text id="text8525" y="173.78314" x="514.49652">勇</text>
+   <text id="text8529" y="37.6796" x="496.16663">勇</text>
+  </g>
+  <g fill="#008">
+   <text id="text8389" y="210.88457" x="129.50002">魏</text>
+   <text id="text8533" y="167.58334" x="154.49998">士</text>
+   <text id="text8537" y="254.18584" x="104.50001">士</text>
+   <text id="text8541" y="124.28208" x="179.49998">象</text>
+   <text id="text8545" y="297.4873" x="79.499931">象</text>
+   <text id="text8549" y="80.980812" x="204.49998">馬</text>
+   <text id="text8553" y="340.78851" x="54.499962">馬</text>
+   <text id="text8557" y="37.6796" x="229.49995">車</text>
+   <text id="text8561" y="97.589417" x="304.15149">砲</text>
+   <text id="text8565" y="418.78503" x="118.70917">砲</text>
+   <text id="text8569" y="384.08978" x="29.499962">車</text>
+   <text id="text8573" y="216.69351" x="274.547">旗</text>
+   <text id="text8577" y="334.37836" x="208.06609">旗</text>
+   <text id="text8581" y="37.679661" x="362.83334">卒</text>
+   <text id="text8585" y="173.78314" x="344.50345">卒</text>
+   <text id="text8589" y="323.3847" x="324.35568">卒</text>
+   <text id="text8593" y="415.63397" x="204.87079">卒</text>
+   <text id="text8597" y="499.55988" x="96.166634">卒</text>
+  </g>
+ </g>
+</svg>
