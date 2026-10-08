@@ -86,7 +86,7 @@
     const svg = $('board');
     let s = '<defs>' +
       '<radialGradient id="parchGrad" cx="50%" cy="42%" r="72%">' +
-      '<stop offset="0%" stop-color="#f6ecd2"/><stop offset="62%" stop-color="#ead9b3"/><stop offset="100%" stop-color="#d4bd8f"/></radialGradient>' +
+      '<stop offset="0%" stop-color="#fbf3de"/><stop offset="62%" stop-color="#f1e2be"/><stop offset="100%" stop-color="#dcc79a"/></radialGradient>' +
       '<radialGradient id="gradF0" cx="35%" cy="27%" r="82%"><stop offset="0%" stop-color="#ea6d5c"/><stop offset="55%" stop-color="#cf3a3a"/><stop offset="100%" stop-color="#7d1a1a"/></radialGradient>' +
       '<radialGradient id="gradF1" cx="35%" cy="27%" r="82%"><stop offset="0%" stop-color="#4fc57c"/><stop offset="55%" stop-color="#2e9e56"/><stop offset="100%" stop-color="#12522b"/></radialGradient>' +
       '<radialGradient id="gradF2" cx="35%" cy="27%" r="82%"><stop offset="0%" stop-color="#7fa6ef"/><stop offset="55%" stop-color="#4a7fe0"/><stop offset="100%" stop-color="#173573"/></radialGradient>' +
@@ -114,7 +114,7 @@
     s += '<polygon class="board-tri" points="' + BD.draw.triangle.map(p => p[0] + ',' + p[1]).join(' ') + '"/>';
     // 135 điểm
     for (let i = 0; i < BD.SIZE; i++)
-      s += `<circle class="node-dot" cx="${BD.pos[i][0].toFixed(1)}" cy="${BD.pos[i][1].toFixed(1)}" r="3.4"/>`;
+      s += `<circle class="node-dot" cx="${BD.pos[i][0].toFixed(1)}" cy="${BD.pos[i][1].toFixed(1)}" r="4.2"/>`;
     // watermark phe + tên sông
     for (let t = 0; t < 3; t++) {
       const F = BD.FACTIONS[t], p = BD.pos[BD.nodeId(t, 5, 2)];
@@ -205,7 +205,7 @@
     const F = BD.FACTIONS[owner];
     const name = fmtPieceName(owner, APP.game.st.pType[mv.p]);
     let s = `<b style="color:${F.color}">${F.name}</b>: ${name} ${coord(mv.from)} → ${coord(mv.to)}`;
-    if (mv.cap !== -1) s += ` <span style="color:#ff8d80">✖ ăn ${fmtPieceName(mv.capOwner, mv.capType)}</span>`;
+    if (mv.cap !== -1) s += ` <span style="color:#c92a2a">✖ ăn ${fmtPieceName(mv.capOwner, mv.capType)}</span>`;
     logLine('l-move', s);
   }
   function logCheck(c) {
@@ -242,7 +242,7 @@
       const n = APP.game.pieces().filter(p => p.owner === f).length;
       c.el.classList.toggle('dead', !alive);
       c.el.classList.toggle('turn', !!alive && APP.started && turn === f);
-      c.sub.textContent = alive ? n + ' quân' : 'Đã bị loại';
+      c.sub.textContent = alive ? (n + ' quân' + (n !== 18 ? ' (' + (n > 18 ? '+' : '−') + Math.abs(18 - n) + ')' : '')) : 'Đã bị loại';
       c.badge.className = 'fc-badge'; c.badge.textContent = ''; c.badge.style.display = '';
       if (!alive) { c.badge.textContent = 'Bị loại'; c.badge.classList.add('dead'); }
       else if (APP.started && turn === f) {
@@ -288,6 +288,19 @@
     // lớp check nếu đang chiếu → thêm quầng sáng cho banner lượt
     document.querySelector('.turn-banner').style.borderColor =
       APP.started && !st.gameOver && APP.game.inCheck(turn) ? '#ff5a4e' : '';
+    // thanh thông tin trên topbar: chế độ · phòng · số nước
+    const info = $('top-info');
+    if (info) {
+      const small = matchMedia('(max-width:960px)').matches;   // màn nhỏ: nhãn gọn cho khỏi cắt
+      const modeL = { ai: '1 vs 2 máy', mix: '2 người + 1 máy', pass: '3 người chơi chung', online: 'Online 3 người' }[APP.mode];
+      const modeS = { ai: '1v2 máy', mix: '2 + 1', pass: '3 người', online: 'Online' }[APP.mode];
+      const lv = { easy: 'Dễ', medium: 'Vừa', hard: 'Khó' }[APP.level];
+      let s = APP.mode === 'online'
+        ? 'Phòng ' + (APP.roomCode || '——')
+        : (small ? modeS : modeL) + (APP.mode !== 'pass' && lv ? ' · ' + lv : '');
+      if (APP.started) s += st.gameOver ? ' · Hết' : ' · Nước ' + (st.stack.length + 1);
+      info.textContent = s;
+    }
   }
 
   /* ===================== CHỌN / ĐI QUÂN ===================== */
@@ -330,7 +343,7 @@
       const [x, y] = BD.pos[m.to];
       const c = elNS('circle', {
         class: 'mv-dot' + (m.cap !== -1 ? ' cap' : ''),
-        cx: x.toFixed(1), cy: y.toFixed(1), r: m.cap !== -1 ? 27 : 9.5
+        cx: x.toFixed(1), cy: y.toFixed(1), r: m.cap !== -1 ? 28 : 11
       });
       c.dataset.to = m.to;
       fx.appendChild(c);
@@ -753,18 +766,28 @@
   }
   function syncSoundBtn() { $('btn-sound').textContent = APP.sound ? '🔊' : '🔇'; }
 
+  /* đổi tọa độ SVG từ vị trí chạm — dùng để "chụt" khi ngón tay trượt */
+  function svgPoint(e) {
+    const svg = $('board'), r = svg.getBoundingClientRect();
+    const vb = svg.viewBox.baseVal;
+    const k = Math.min(r.width / vb.width, r.height / vb.height) || 1;
+    const ox = (r.width - vb.width * k) / 2, oy = (r.height - vb.height * k) / 2;
+    return [(e.clientX - r.left - ox) / k, (e.clientY - r.top - oy) / k];
+  }
+  function sendMove(mv) {
+    if (APP.mode === 'online' && APP.net) APP.net.send({ t: 'move', seat: APP.seat, p: mv.p, to: mv.to });
+    playMove(mv);
+  }
   function onBoardClick(e) {
     if (!myTurn()) return;
+    // 1) chạm trúng ô đi / ô ăn (hit-test thật)
     const dot = e.target.closest && e.target.closest('.mv-dot');
     if (dot != null) {
-      const to = +dot.dataset.to;
-      const mv = APP.selMoves.find(m => m.to === to);
-      if (mv) {
-        if (APP.mode === 'online' && APP.net) APP.net.send({ t: 'move', seat: APP.seat, p: mv.p, to: mv.to });
-        playMove(mv);
-      }
+      const mv = APP.selMoves.find(m => m.to === +dot.dataset.to);
+      if (mv) sendMove(mv);
       return;
     }
+    // 2) chạm trúng quân cờ
     const pel = e.target.closest && e.target.closest('.piece');
     if (pel) {
       const id = +pel.dataset.id;
@@ -773,7 +796,26 @@
       else deselect();
       return;
     }
-    deselect();
+    // 3) trượt ngón (điện thoại): chọn mục tiêu NEAREST trong bán kính dễ bấm
+    const [x, y] = svgPoint(e);
+    const st = APP.game.st;
+    if (APP.sel != null) {
+      let best = null, bestKey = 33;   // ăn quân được cộng 8 — gần như bấm đâu cũng ăn
+      for (const m of APP.selMoves) {
+        const p = BD.pos[m.to];
+        const key = Math.hypot(p[0] - x, p[1] - y) - (m.cap !== -1 ? 8 : 0);
+        if (key < bestKey) { bestKey = key; best = m; }
+      }
+      if (best) { sendMove(best); return; }
+    }
+    let bp = null, bd = 27;
+    for (const [id] of APP.pieceEls) {
+      if (st.pOwner[id] !== st.turn || !st.pAlive[id]) continue;
+      const p = BD.pos[st.pNode[id]];
+      const d = Math.hypot(p[0] - x, p[1] - y);
+      if (d < bd) { bd = d; bp = id; }
+    }
+    if (bp != null) select(bp); else deselect();
   }
 
   function doUndo() {
