@@ -1,7 +1,7 @@
 /* ============================================================
    engine.js — Rules engine Cờ Tam Quốc
    - 3 phe, lượt Thục → Ngô → Ngụy
-   - Đi quân trên "đường" (24 file chain + 15 rank chain)
+   - Đi quân trên "đường" (15 file chain + 15 rank chain)
    - Chiếu bí / cờ bí → phe thua chuyển toàn quân cho phe thắng
    - Luật trung lập (tùy chọn): ko được tấn công phe chưa mời开战
    - Không bao giờ "ăn tướng" bằng nước đi thường — phân bại
@@ -15,10 +15,10 @@
 
   const { K, A, E, H, R, C, P, B: BT } = BD;
   const SIZE = 135;
-  const fileLines = BD.fileLines;                    // 24 (idx 0..23)
+  const fileLines = BD.fileLines;                    // 15 (9 vượt sông + 3 cửa + 3 cặp)
   const rankLines = BD.rankLines;                    // 15 (idx 0..14)
-  const LINES = fileLines.concat(rankLines);         // thống nhất: 39 đường
-  const RANK_OFF = 24;
+  const LINES = fileLines.concat(rankLines);         // thống nhất: 30 đường
+  const RANK_OFF = fileLines.length;                 // offset dòng rank trong LINES
   const fileEnt = BD.fileMap;                        // node → [{line,idx}] (line trong fileLines)
   const rankEnt = BD.rankMap;                        // node → {line,idx}   (line trong rankLines)
 
@@ -189,8 +189,8 @@
         if (BD.distOrigin(n2, f) > d0) out.push(n2);
       }
     }
-    const rk = rankEnt[node];                         // ngang = đúng 1 ô, chỉ ở bank/rùa địch
-    if (d0 === 5 || d0 > 5) {
+    const rk = rankEnt[node];                         // ngang = đúng 1 ô, CHỈ khi đã vượt sông
+    if (d0 > 5) {                                     // bank sân nhà (d0=5) vẫn là "sân nhà" — cấm đi ngang
       const arr = rankLines[rk.line];
       if (rk.idx - 1 >= 0) out.push(arr[rk.idx - 1]);
       if (rk.idx + 1 < arr.length) out.push(arr[rk.idx + 1]);
@@ -432,12 +432,19 @@
 
   /* nước đi có vi phạm tự chiếu / mặt đối tướng / luật trung lập? */
   function facingExists(st) {
-    for (const pr of PAIRS) {
-      const arr = fileLines[pr.line];
-      const ga = st.pNode[st.genId[pr.a]], gb = st.pNode[st.genId[pr.b]];
-      const ia = arr.indexOf(ga), ib = arr.indexOf(gb);
-      if (ia < 0 || ib < 0) continue;
-      if (alongEmpty(st, arr, ia, ib)) return true;
+    // 2 tướng cùng đứng trên MỘT chuỗi file & giữa 2 tướng trống hết = mặt đối.
+    // Kiểm mọi cặp tướng × mọi chuỗi file họ cùng đứng (tam giác f5, cửa f1/f9,
+    // và chuỗi f4/f6 vượt sông) — không chỉ 3 chuỗi cặp như trước.
+    for (let a = 0; a < 3; a++) {
+      for (let b = a + 1; b < 3; b++) {
+        const ga = st.pNode[st.genId[a]], gb = st.pNode[st.genId[b]];
+        if (!(ga >= 0) || !(gb >= 0)) continue;
+        for (const e of fileEnt[ga]) {
+          const arr = fileLines[e.line];
+          const ib = arr.indexOf(gb);
+          if (ib >= 0 && alongEmpty(st, arr, e.idx, ib)) return true;
+        }
+      }
     }
     return false;
   }

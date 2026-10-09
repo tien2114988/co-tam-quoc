@@ -166,15 +166,21 @@
     return li;
   }
 
-  // --- 18 chuỗi ngắn (f = 2,3,4,6,7,8) trong lãnh thổ ---
-  const shortIdx = [new Array(9).fill(-1), new Array(9).fill(-1), new Array(9).fill(-1)];
-  for (let t = 0; t < 3; t++) {
-    for (const f of [2, 3, 4, 6, 7, 8]) {
-      const arr = [];
-      for (let r = 1; r <= 5; r++) arr.push(nodeId(t, f, r));
-      shortIdx[t][f - 1] = addFileLine(arr);
-    }
-  }
+  // --- 9 chuỗi file: mỗi file ngắn nối thẳng sang bank đối diện — quân đi được
+  //     qua sông ở MỌI file. Giống cờ tướng gốc: sông chỉ là địa hình vẽ,
+  //     "grid" vẫn liên tục nên Xe/Pháo/Tốt/Mã đều vượt sông được.
+  //     (Cửa cổ điển f1/f9 + tam giác giữa sân vẫn giữ nguyên bên dưới.)
+  const CROSS_PAIRS = [
+    [0, 2, 2, 2], [0, 3, 2, 3], [0, 4, 2, 4],   // Thục ↔ Ngụy (sông dưới-trái, cùng số file)
+    [0, 8, 1, 2], [0, 7, 1, 3], [0, 6, 1, 4],   // Thục ↔ Ngô  (sông dưới-phải, soi gương)
+    [2, 6, 1, 6], [2, 7, 1, 7], [2, 8, 1, 8]    // Ngụy ↔ Ngô  (sông trên, cùng số file)
+  ];
+  const CROSS = CROSS_PAIRS.map(([ta, fa, tb, fb]) => {
+    const arr = [];
+    for (let r = 1; r <= 5; r++) arr.push(nodeId(ta, fa, r));
+    for (let r = 5; r >= 1; r--) arr.push(nodeId(tb, fb, r));
+    return addFileLine(arr);
+  });
 
   // --- 3 chuỗi cạnh (10 điểm, sông cắt giữa) ---
   // LL: Thục.f1 → Ngụy.f1 (cạnh dưới-trái)
@@ -207,39 +213,10 @@
     nodeId(2, 5, 5), nodeId(2, 5, 4), nodeId(2, 5, 3), nodeId(2, 5, 2), nodeId(2, 5, 1)
   ]);
 
-  // --- map node → chuỗi file ---
+  // --- map node → chuỗi file (generic: node file5 thuộc 2 chuỗi cặp, còn lại 1) ---
   for (let id = 0; id < SIZE; id++) fileMap[id] = [];
-  for (let t = 0; t < 3; t++) {
-    for (let f = 1; f <= 9; f++) {
-      if (f === 5) continue;
-      if (f === 1 || f === 9) {
-        let line, startsAtFront; // startsAtFront: idx = r-1 (phe đầu chuỗi) hay idx = 5+(5-r) (phe sau)
-        if (t === 0 && f === 1) { line = LL; startsAtFront = true; }
-        else if (t === 0 && f === 9) { line = LR; startsAtFront = true; }
-        else if (t === 2 && f === 1) { line = LL; startsAtFront = false; }
-        else if (t === 2 && f === 9) { line = TOP; startsAtFront = true; }
-        else if (t === 1 && f === 1) { line = LR; startsAtFront = false; }
-        else { line = TOP; startsAtFront = false; } // Ngô.f9
-        for (let r = 1; r <= 5; r++) {
-          const idx = startsAtFront ? (r - 1) : (5 + (5 - r));
-          fileMap[nodeId(t, f, r)].push({ line, idx });
-        }
-      } else {
-        const line = shortIdx[t][f - 1];
-        for (let r = 1; r <= 5; r++) fileMap[nodeId(t, f, r)].push({ line, idx: r - 1 });
-      }
-    }
-  }
-  // f5: mỗi điểm thuộc 2 chuỗi cặp
-  const f5Pairs = [[P01, P02], [P01, P12], [P02, P12]];
-  for (let t = 0; t < 3; t++) {
-    for (let r = 1; r <= 5; r++) {
-      const id = nodeId(t, 5, r);
-      for (const li of f5Pairs[t]) {
-        fileMap[id].push({ line: li, idx: fileLines[li].indexOf(id) });
-      }
-    }
-  }
+  for (let li = 0; li < fileLines.length; li++)
+    fileLines[li].forEach((id, idx) => fileMap[id].push({ line: li, idx }));
 
   // --- map node → chuỗi rank ---
   for (let t = 0; t < 3; t++) {
@@ -287,10 +264,8 @@
         major: r === 5
       });
   // file nội bộ
-  draw.files = [];
-  for (let t = 0; t < 3; t++)
-    for (const f of [2, 3, 4, 6, 7, 8])
-      draw.files.push({ t, f, a: pos[nodeId(t, f, 1)], b: pos[nodeId(t, f, 5)] });
+  // 9 chuỗi vượt sông: vẽ đủ từ hàng 1 phe này → hàng 1 phe bên kia (gãy nhẹ chỗ sông)
+  draw.files = CROSS.map(li => ({ pts: fileLines[li].map(id => pos[id]) }));
   // cung: 2 đường chéo gãy qua (5,2)
   draw.palaces = [];
   for (let t = 0; t < 3; t++) {

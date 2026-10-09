@@ -183,7 +183,7 @@ button{font-family:var(--fs);cursor:pointer}
 /* ---------- bàn cờ ---------- */
 .board-wrap{
   flex:1;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:42px 12px 16px;min-width:0;
+  padding:34px 6px 10px;min-width:0;
 }
 #board{width:100%;height:100%;max-height:100%;filter:drop-shadow(0 14px 30px rgba(96,68,22,.30))}
 
@@ -202,8 +202,8 @@ button{font-family:var(--fs);cursor:pointer}
 
 /* ---------- panel phải ---------- */
 .side-panel{
-  width:322px;flex:none;display:flex;flex-direction:column;gap:10px;
-  border-left:1px solid #e3d3a6;background:var(--panel);padding:14px 14px 12px;min-height:0;
+  width:294px;flex:none;display:flex;flex-direction:column;gap:10px;
+  border-left:1px solid #e3d3a6;background:var(--panel);padding:12px 12px 11px;min-height:0;
 }
 .faction-cards{display:flex;flex-direction:column;gap:8px}
 .fcard{
@@ -262,14 +262,16 @@ button{font-family:var(--fs);cursor:pointer}
 /* ============================================================
    BÀN CỜ SVG
    ============================================================ */
-.board-hex{fill:url(#parchGrad);stroke:#5a3f1d;stroke-width:6}
-.board-river{fill:rgba(74,130,180,.13);stroke:rgba(60,110,160,.45);stroke-width:2.5;stroke-dasharray:1 0}
-.board-line{stroke:#6d4f2a;stroke-width:2.4;fill:none;stroke-linecap:round}
-.board-line.major{stroke:#a04a2e;stroke-width:3.2}
-.board-palace{stroke:#b05f33;stroke-width:2.6;fill:none;stroke-dasharray:7 5}
-.board-tri{fill:rgba(184,134,47,.12);stroke:#a8792a;stroke-width:2.4;stroke-dasharray:6 5}
+.board-hex{fill:url(#parchGrad);stroke:#5a3f1d;stroke-width:7}
+.board-river{fill:rgba(74,130,180,.13);stroke:rgba(60,110,160,.45);stroke-width:3;stroke-dasharray:1 0}
+.board-line{stroke:#6d4f2a;stroke-width:2.9;fill:none;stroke-linecap:round}
+.board-line.major{stroke:#a04a2e;stroke-width:3.7}
+/* đường vượt sông: đậm & dày hơn để thấy rõ 9 chỗ xuyên qua sông */
+.board-line.river-cross{stroke:#5b4122;stroke-width:3.4}
+.board-palace{stroke:#b05f33;stroke-width:3;fill:none;stroke-dasharray:7 5}
+.board-tri{fill:rgba(184,134,47,.12);stroke:#a8792a;stroke-width:2.9;stroke-dasharray:6 5}
 .board-hint-txt{font-size:15px;fill:#6d4f2a;opacity:.75;letter-spacing:.4em;font-style:italic}
-.node-dot{fill:#5f4526;opacity:.62}
+.node-dot{fill:#5f4526;opacity:.7}
 .land-label{font-weight:700;opacity:.15;text-anchor:middle;dominant-baseline:middle;letter-spacing:.3em;pointer-events:none}
 
 /* --- quân cờ --- */
@@ -385,7 +387,7 @@ button{font-family:var(--fs);cursor:pointer}
 /* ---- ĐIỆN THOẠI DỌN (và tablet dọc ≤960px): bàn cờ trên, panel dưới ---- */
 @media (orientation:portrait) and (max-width:960px){
   .game-main{flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch}
-  .board-wrap{height:auto;flex:none;padding-top:48px;padding-left:6px;padding-right:6px}
+  .board-wrap{height:auto;flex:none;padding-top:42px;padding-left:3px;padding-right:3px}
   #board{height:auto;aspect-ratio:860/750}          /* bám đúng tỉ lệ, không letterbox */
   .side-panel{width:100%;border-left:none;border-top:1px solid #e3d3a6;flex:none;
     padding-bottom:max(16px,env(safe-area-inset-bottom))}
@@ -432,11 +434,11 @@ button{font-family:var(--fs);cursor:pointer}
   .top-title{display:none}                            /* nhường chỗ cho bàn cờ */
   #top-info{font-size:12px;text-align:left}
   .top-btn{padding:7px 9px;font-size:13px}
-  .board-wrap{padding:36px 8px 8px}
+  .board-wrap{padding:30px 6px 6px}
   .turn-banner{font-size:12.5px;padding:5px 14px;top:4px;gap:7px}
   .tb-dot{width:9px;height:9px}
   .board-hint{display:none}
-  .side-panel{width:236px;padding:9px 9px 8px;gap:7px;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  .side-panel{width:216px;padding:9px 9px 8px;gap:7px;overflow-y:auto;-webkit-overflow-scrolling:touch;
     padding-bottom:max(10px,env(safe-area-inset-bottom))}
   .fcard{padding:6px 8px;gap:7px}
   .fcard .fc-crest{width:30px;height:30px;font-size:16px}

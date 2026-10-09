@@ -60,20 +60,37 @@ open index.html          # macOS — hoặc bấm đúp vào index.html
 
 ### Bàn cờ & đi quân
 - Bàn **lục giác**, mỗi phe một nửa bàn cờ kiểu tướng 9×5 (cung 3×3 ở góc).
-- **3 nhánh sông hình Y** + **tam giác trung tâm** là nơi vượt giữa các phe;
-  **3 miệng sông** (10 điểm liên tiếp) là đường biên chung.
-- Quân đi trên các **chuỗi đường** (24 chuỗi dọc + 15 chuỗi ngang, có gãy):
-  - **Xe** đi thẳng dọc chuỗi, dừng ở quân cản.
-  - **Pháo** đi như Xe, **ăn phải nhảy qua đúng 1 quân làm màn**.
+- **3 nhánh sông hình Y** ngăn cách 3 lãnh thổ. Như cờ tướng gốc: sông chỉ là
+  **địa hình vẽ** — đường đi của quân vẫn liên tục qua sông ở **mọi file**
+  (không chỉ ở cửa); **3 miệng sông** và **tam giác trung tâm** là các giao
+  điểm đặc biệt (vượt qua tâm có thể rẽ sang cả 2 phe).
+- Quân đi trên các **chuỗi đường** (15 chuỗi dọc vượt sông + 15 chuỗi ngang, có gãy):
+  - **Xe** đi thẳng dọc chuỗi, dừng ở quân cản — **vượt sông tự do**.
+  - **Pháo** đi như Xe, **ăn phải nhảy qua đúng 1 quân làm màn** (màn đặt
+    bên nào cũng tính, kể cả khi đã sang sông).
   - **Mã** đi “2 ô + 1 bước chéo”, bị chặn bởi ô đi đầu (n1).
   - **Cờ hiệu** (Quân kỳ — 火/風/旗) đi “3 ô + 1 bước chéo” hình chữ L lớn,
     chặn bởi n1, n2 (n3 ảo) — quân đặc biệt chỉ có ở bản gốc.
-  - **Tốt** tiến thẳng tăng khoảng cách gốc; đi ngang được **ngay tại hàng 5
-    của mình** hoặc **đã vào đất địch**.
+  - **Tốt** tiến thẳng tăng khoảng cách gốc; **chỉ được đi ngang khi đã vượt
+    sông** (bank sân nhà vẫn là sân nhà — đúng luật cờ tướng); sau khi vượt
+    thì đi ngang 1 ô như bình thường.
   - **Sĩ** đi chéo trong cung · **Tượng** đi chéo 2 ô trong lãnh thổ (có mắt chặn) ·
     **Tướng** đi 1 ô trong cung.
-- **Mặt đối:** hai tướng đứng trên cùng chuỗi cặp, giữa hai ông không có ai →
-  nước đi để xảy ra mặt đối là **bất hợp pháp** (không có “tướng bay”).
+- **Mặt đối:** hai tướng đứng trên cùng **bất kỳ chuỗi dọc nào** (kể cả chuỗi
+  f4/f6 vượt sông), giữa hai ông không có ai → nước đi để xảy ra mặt đối là
+  **bất hợp pháp** (không có “tướng bay”).
+
+### 📚 Nguồn tham khảo luật chơi
+- **Wikipedia tiếng Anh — "Game of the Three Kingdoms"** (Sanguo Qi / Three-Handed
+  Xiangqi): luật đi quân, quy ước **tam giác trung tâm** chọn 1 trong 2 hướng
+  khi vượt cột giữa, cờ hiệu 2+1, chiếu bí → chuyển quân cho phe chiếu.
+- **Wikipedia tiếng Việt — "Cờ Tam Quốc"**: *“chơi theo nguyên tắc chơi cơ bản
+  của cờ tướng 2 người về di chuyển quân, ăn quân”* → Tốt qua sông mới đi ngang,
+  Pháo nhảy 1 màn ăn, Tượng/Sĩ không qua sông.
+- **Jean-Louis Cazaux** (history.chess.free.fr/sanguoqi.htm): *“Xiangqi pieces
+  keep their moves”*, cấu trúc 3 nửa bàn 9×5, quân Fire/Flag/Wind.
+- **Sơ đồ gốc của O. von Möllendorff (1876)** trong *"Das Schachspiel der
+  Chinesen"* — hình mẫu cho bàn cờ 135 điểm trong game này.
 
 ### ⭐ Luật đặc trưng: bị chiếu bí → đại bại chuyển quân
 Khi phe A **hết nước** lúc đến lượt (bị chiếu bí hoặc cờ bí):
@@ -109,7 +126,7 @@ Phe C được phép (hoặc không) ngăn cản cuộc chiếu giữa A và B �
 node test/run.js      # gộp 3 bộ
 # hoặc chạy lẻ:
 node test/geom.js     # 35 asserts — hình học 135 điểm, chuỗi đường, lục giác
-node test/engine.js   # 50 asserts — luật đi, chiếu bí → chuyển quân, undo, trung lập…
+node test/engine.js   # 63 asserts — luật đi, vượt sông, chiếu bí → chuyển quân, undo, trung lập…
 node test/ai.js       # 9 asserts  — AI trả nước hợp lệ, tốc độ, 3 máy đấu đến hết ván
 ```
 

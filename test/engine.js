@@ -24,8 +24,9 @@ const node = (terr, f, r) => BD.nodeId(terr, f, r);
 /* ============ 1. ván chuẩn: 30 nước/phe, undo chuẩn ============ */
 {
   const g = new E.Game({});
-  ok(g.legalMoves(0).length === 30 && g.legalMoves(1).length === 30 && g.legalMoves(2).length === 30,
-    `ván chuẩn: 30/30/30 nước đầu (${g.legalMoves(0).length},${g.legalMoves(1).length},${g.legalMoves(2).length})`);
+  ok(g.legalMoves(0).length === 40 && g.legalMoves(1).length === 40 && g.legalMoves(2).length === 40,
+    `ván chuẩn: 40/40/40 nước đầu (${g.legalMoves(0).length},${g.legalMoves(1).length},${g.legalMoves(2).length})` +
+    ' — 30 cũ + 10 nước vượt sông (2 cờ hiệu×2, 2 pháo×3)');
 
   const snap = () => JSON.stringify({
     sq: Array.from(g.st.sq), pOwner: Array.from(g.st.pOwner), pNode: Array.from(g.st.pNode),
@@ -258,6 +259,78 @@ function neutralPieces() {
   ok(g.st.alive[0] && g.st.alive[1] && g.st.alive[2] && !g.st.gameOver && g.st.turn === 0,
     'undo: ván trở lại đúng 3 phe như chưa đi');
   ok(g.pieces().length === 11 && g.pieces().filter(p => p.type === K).length === 3, 'undo: đủ 11 quân, 3 tướng');
+}
+
+/* ============ 11. VƯỢT SÔNG MỌI FILE + CHỐT CHỈ ĐI NGANG SAU KHI VƯỢT ============ */
+{
+  // 11a. chốt đứng bank sân nhà (sát mép sông): CẤM đi ngang, tiến VƯỢT SÔNG được
+  const g = craft({ pieces: [
+    [0, K, 0, 5, 1], [0, P, 0, 5, 3],     // chặn mặt đối P01/P02
+    [0, P, 0, 3, 5],                      // chốt Thục đứng bank file 3
+    [1, K, 1, 5, 1], [1, P, 1, 5, 4],     // chặn P01/P12
+    [2, K, 2, 5, 1], [2, P, 2, 5, 4]      // chặn P02/P12
+  ]});
+  const geo = E.pawnGeo(g.st, node(0, 3, 5), 0);
+  ok(!geo.includes(node(0, 2, 5)) && !geo.includes(node(0, 4, 5)),
+    'chốt CHƯA vượt sông: KO đi ngang được (bank sân nhà)');
+  ok(geo.includes(node(2, 3, 5)),
+    'chốt bank sân nhà: tiến thẳng VƯỢT SÔNG sang bank địch');
+  const mvC = g.legalMoves(0).find(m => m.to === node(2, 3, 5));
+  ok(!!mvC, 'nước đi vượt sông của chốt hợp lệ');
+  if (mvC) {
+    g.play(mvC);
+    const geo2 = E.pawnGeo(g.st, node(2, 3, 5), 0);
+    ok(geo2.includes(node(2, 2, 5)) && geo2.includes(node(2, 4, 5)),
+      'chốt ĐÃ vượt sông: đi ngang được (đúng cờ tướng)');
+    g.undo();
+  }
+
+  // 11b. xe trượt xuyên sông ở file ngắn trong 1 nước
+  const g2 = craft({ pieces: [
+    [0, K, 0, 5, 1], [0, P, 0, 5, 3],
+    [0, R, 0, 3, 1],                     // xe Thục đầu file 3, đường trống
+    [1, K, 1, 5, 1], [1, P, 1, 5, 4],
+    [2, K, 2, 5, 1], [2, P, 2, 5, 4]
+  ]});
+  const rook = g2.pieces().find(p => p.owner === 0 && p.type === R);
+  const tosR = g2.legalMoves(0).filter(m => m.p === rook.id).map(m => m.to);
+  ok(tosR.includes(node(0, 3, 5)), 'xe ra tới bank sân nhà');
+  ok(tosR.includes(node(2, 3, 5)), 'xe VƯỢT SÔNG qua file 3');
+  ok(tosR.includes(node(2, 3, 1)), 'xe trượt xuyên qua tới hàng 1 địch trong 1 nước');
+
+  // 11c. pháo: không màn → trượt qua sông; có màn → nhảy màn 1 dòng ăn quân địch
+  const g3 = craft({ pieces: [
+    [0, K, 0, 5, 1], [0, P, 0, 5, 3],
+    [0, C, 0, 3, 1],                     // pháo không màn
+    [1, K, 1, 5, 1], [1, P, 1, 5, 4],
+    [2, K, 2, 5, 1], [2, P, 2, 5, 4]
+  ]});
+  const can0 = g3.pieces().find(p => p.owner === 0 && p.type === C);
+  const tosC = g3.legalMoves(0).filter(m => m.p === can0.id).map(m => m.to);
+  ok(tosC.includes(node(2, 3, 5)) && tosC.includes(node(2, 3, 1)),
+    'pháo không màn: trượt VƯỢT SÔNG tới hàng địch');
+
+  const g4 = craft({ pieces: [
+    [0, K, 0, 5, 1], [0, P, 0, 5, 3],
+    [0, C, 0, 3, 1], [0, P, 0, 3, 3],     // pháo + màn (tốt Thục)
+    [1, K, 1, 5, 1], [1, P, 1, 5, 4],
+    [2, K, 2, 5, 1], [2, P, 2, 5, 4], [2, H, 2, 3, 1]   // mã Ngụy đầu file 3
+  ]});
+  const can1 = g4.pieces().find(p => p.owner === 0 && p.type === C);
+  const tosD = g4.legalMoves(0).filter(m => m.p === can1.id).map(m => m.to);
+  ok(!tosD.includes(node(0, 3, 5)) && !tosD.includes(node(0, 3, 4)),
+    'pháo sau màn: ko đi tiếp ô trống (phải ăn)');
+  ok(tosD.includes(node(2, 3, 1)),
+    'pháo nhảy MỘT màn dòng thứ 7 ăn mã Ngụy đầu file (qua sông)');
+
+  // 11d. mặt đối tướng trên chuỗi file4 vượt sông (luật mới)
+  const g5 = craft({ pieces: [[0, K, 0, 4, 1], [0, H, 0, 4, 3], [2, K, 2, 4, 1]] });
+  ok(E.facingExists(g5.st) === false, 'tướng Thục–Ngụy cùng chuỗi file4, có mã chặn → chưa mặt đối');
+  const horse = g5.pieces().find(p => p.owner === 0 && p.type === H);
+  ok(g5.legalMoves(0).filter(m => m.p === horse.id).length === 0,
+    'mọi nước đi của mã (rời chuỗi file4) đều bị loại vì tạo mặt đối');
+  const g6 = craft({ pieces: [[0, K, 0, 4, 1], [2, K, 2, 4, 1]] });
+  ok(E.facingExists(g6.st) === true, 'tướng cùng chuỗi file4 giữa trống → MẶT ĐỐI TƯỚNG');
 }
 
 console.log(fail === 0 ? `\n★ ENGINE PASSED (${pass} assertions)` : `\n✗ ${fail} lỗi / ${pass} pass`);

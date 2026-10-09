@@ -55,14 +55,16 @@ for (let i = 0; i < B.SIZE; i++) {
 ok(fm === 0 && rm === 0, `fileMap/rankMap phủ đủ 135 node (thiếu fm=${fm}, rm=${rm})`);
 
 /* 8. số chuỗi & không trùng node */
-ok(B.fileLines.length === 24, `24 chuỗi file (${B.fileLines.length})`);
+ok(B.fileLines.length === 15,
+  `15 chuỗi file = 9 vượt sông + 3 cửa + 3 cặp (${B.fileLines.length})`);
 ok(B.rankLines.length === 15, `15 chuỗi rank (${B.rankLines.length})`);
 let dup = 0;
 B.fileLines.forEach(arr => { if (new Set(arr).size !== arr.length) dup++; });
 B.rankLines.forEach(arr => { if (new Set(arr).size !== arr.length) dup++; });
 ok(dup === 0, `không chuỗi nào trùng node (${dup})`);
 
-/* 9. mọi chuỗi file thẳng: các node thẳng hàng (độ lệch khoảng cách so với đường thẳng < 0.05) */
+/* 9. cấu trúc chuỗi file: mỗi nửa 5 node thẳng hàng, tách đúng 2 phe,
+      ngân sông giữa 2 bank trong khoảng 1 bước đi; 3 cửa sông thẳng hoàn toàn */
 function collinear(arr) {
   if (arr.length < 3) return true;
   const [x0, y0] = B.pos[arr[0]], [x1, y1] = B.pos[arr[arr.length - 1]];
@@ -74,18 +76,21 @@ function collinear(arr) {
   }
   return true;
 }
-let nonCol = 0;
-B.fileLines.forEach((arr, i) => {
-  if (i >= 21) return; // 3 chuỗi cặp có gấp khúc ở T-node (đúng như bàn thật)
-  if (!collinear(arr)) nonCol++;
+let badHalf = 0, badTerr = 0, badGap = 0;
+B.fileLines.forEach(arr => {
+  if (arr.length !== 10) { badHalf++; return; }
+  if (!collinear(arr.slice(0, 5)) || !collinear(arr.slice(5, 10))) badHalf++;
+  const t0 = B.nodes[arr[0]].t;
+  if (arr.some((id, i) => (i < 5 ? B.nodes[id].t !== t0 : B.nodes[id].t === t0))) badTerr++;
+  const gap = d(B.pos[arr[4]], B.pos[arr[5]]);
+  if (gap < 40 || gap > 85) badGap++;
 });
-ok(nonCol === 0, `21 chuỗi file thẳng đều thẳng hàng (sai: ${nonCol})`);
-/* 3 chuỗi cặp: kiểm từng đoạn thẳng — nửa trong lãnh thổ phải thẳng */
-const halfStraight = (arr, from, to) => collinear(arr.slice(from, to));
-ok(halfStraight(B.fileLines[21], 0, 5) && halfStraight(B.fileLines[21], 5, 10) &&
-   halfStraight(B.fileLines[22], 0, 5) && halfStraight(B.fileLines[22], 5, 10) &&
-   halfStraight(B.fileLines[23], 0, 5) && halfStraight(B.fileLines[23], 5, 10),
-  '3 chuỗi cặp: mỗi nửa 5 node thẳng hàng');
+ok(badHalf === 0, `15 chuỗi file: mỗi nửa 5 node thẳng hàng (sai: ${badHalf})`);
+ok(badTerr === 0, `mỗi chuỗi: 5 node phe đầu & 5 node phe sau tách đúng lãnh thổ (sai: ${badTerr})`);
+ok(badGap === 0, `ngăn sông 2 bank = 40–85 ≤ 1 bước (sai: ${badGap})`);
+ok(collinear(B.fileLines[B.INTER.LL]) && collinear(B.fileLines[B.INTER.LR]) &&
+   collinear(B.fileLines[B.INTER.TOP]),
+  '3 cửa sông (f1/f9) thẳng hàng hoàn toàn trên cạnh lục giác');
 
 /* 10. node trên chuỗi file giữ đúng thứ tự khoảng cách tăng dần (không nhảy ngược) */
 let jumps = 0;

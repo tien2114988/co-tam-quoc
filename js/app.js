@@ -100,9 +100,10 @@
     for (const rk of BD.draw.ranks)
       s += '<polyline class="board-line' + (rk.major ? ' major' : '') + '" points="' +
         rk.pts.map(p => p[0] + ',' + p[1]).join(' ') + '"/>';
-    // file nội bộ + file 5 trong lãnh thổ
+    // 9 chuỗi file vượt sông (đủ từ hàng 1 phe này → hàng 1 phe bên kia)
     for (const f of BD.draw.files)
-      s += `<line class="board-line" x1="${f.a[0]}" y1="${f.a[1]}" x2="${f.b[0]}" y2="${f.b[1]}"/>`;
+      s += '<polyline class="board-line river-cross" points="' +
+        f.pts.map(p => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ') + '"/>';
     for (let t = 0; t < 3; t++) {
       const a = BD.pos[BD.nodeId(t, 5, 1)], b = BD.pos[BD.nodeId(t, 5, 5)];
       s += `<line class="board-line" x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`;
@@ -114,7 +115,7 @@
     s += '<polygon class="board-tri" points="' + BD.draw.triangle.map(p => p[0] + ',' + p[1]).join(' ') + '"/>';
     // 135 điểm
     for (let i = 0; i < BD.SIZE; i++)
-      s += `<circle class="node-dot" cx="${BD.pos[i][0].toFixed(1)}" cy="${BD.pos[i][1].toFixed(1)}" r="4.2"/>`;
+      s += `<circle class="node-dot" cx="${BD.pos[i][0].toFixed(1)}" cy="${BD.pos[i][1].toFixed(1)}" r="5.4"/>`;
     // watermark phe + tên sông
     for (let t = 0; t < 3; t++) {
       const F = BD.FACTIONS[t], p = BD.pos[BD.nodeId(t, 5, 2)];
@@ -343,7 +344,7 @@
       const [x, y] = BD.pos[m.to];
       const c = elNS('circle', {
         class: 'mv-dot' + (m.cap !== -1 ? ' cap' : ''),
-        cx: x.toFixed(1), cy: y.toFixed(1), r: m.cap !== -1 ? 28 : 11
+        cx: x.toFixed(1), cy: y.toFixed(1), r: m.cap !== -1 ? 29.5 : 12
       });
       c.dataset.to = m.to;
       fx.appendChild(c);
